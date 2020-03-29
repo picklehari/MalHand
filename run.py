@@ -28,7 +28,7 @@ path = "Data/"
 
 #data = ImageDataBunch.from_name_re(train_path,train_fnames,pat,size=1024,bs=16).normalize(imagenet_stats)
 tfms = get_transforms(do_flip=False)
-data = ImageDataBunch.from_folder(path,ds_tfms=tfms,size=1024)
+data = ImageDataBunch.from_folder(path,ds_tfms=tfms,size=1024,bs=16)
 # data.show_batch(rows=3)
 # plt.show()
 
