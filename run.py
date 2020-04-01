@@ -23,15 +23,34 @@ from fastai.metrics import error_rate
 # from google.colab import drive
 # drive.mount("/content/gdrive")
 
-path = "Data/"
+path = "bw/"
+
+alphabet = "്  ാ  ി  ീ  ു  ൂ  െ ൃ  െ  ൌ  ം അ ആ ഇ ഉ ഋ എ ഏ ഒ ക ഖ ഗ ഘ ങ ച ഛ ജ ഝ ഞ ട ഠ ഢ ഡ ണ ത ഫ ദ ധ ന പ ഫ ബ ഭ മ യ ര റ ല ള ഴ വ ശ ഷ സ ഹ ൺ ൻ ർ ൽ ൾ ക്ക ക്ഷ ങ്ക ങ്ങ ച്ച ഞ്ച ഞ്ഞ ട്ട ണ്ട ണ്ണ ത്ത ദ്ധ ന്ത ന്ദ ന്ന പ്പ മ്പ മ്മ യ്യ ല്ല ള്ള  ്യ   ്ര  ്വ"
+alphabet = alphabet.split(" ")
+alphabets = []
+for x in alphabet:
+    if x!= '':
+        alphabets.append(x)
+
 
 
 #data = ImageDataBunch.from_name_re(train_path,train_fnames,pat,size=1024,bs=16).normalize(imagenet_stats)
-tfms = get_transforms(do_flip=False)
-data = ImageDataBunch.from_folder(path,ds_tfms=tfms,size=1024,bs=16)
-# data.show_batch(rows=3)
-# plt.show()
+# tfms = get_transforms(do_flip=False)
+# data = ImageDataBunch.from_folder(path,ds_tfms=tfms,size=1024,bs=16)
+# # data.show_batch(rows=3)
+# # plt.show()
 
-learn = cnn_learner(data, models.resnet34, metrics=error_rate)
-learn.fit_one_cycle(2)
+# learn = cnn_learner(data, models.resnet34, metrics=error_rate)
+# learn.fit_one_cycle(2)
+defaults.device = torch.device("cpu")
+
+learn = load_learner(path= '.',file="MalHand.pkl")
+
+image_path = Path('bw/')
+img = open_image(image_path/"160.png")
+
+pred_class,pred_idx,outputs = learn.predict(img)
+index = int(str(pred_class)) - 1
+print(alphabets[index])
+print(pred_class)
 
