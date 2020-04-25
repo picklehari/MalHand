@@ -1,3 +1,6 @@
 MalHand_2.pkl filter=lfs diff=lfs merge=lfs -text
 MalHand.pkl filter=lfs diff=lfs merge=lfs -text
 Data_sorted.zip filter=lfs diff=lfs merge=lfs -text
+CSVs/Handwritten_V2_test.csv filter=lfs diff=lfs merge=lfs -text
+CSVs/Handwritten_V2_train.csv filter=lfs diff=lfs merge=lfs -text
+CSVs/Handwritten_V2_valid.csv filter=lfs diff=lfs merge=lfs -text
